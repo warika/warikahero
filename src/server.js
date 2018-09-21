@@ -11,12 +11,12 @@ import Customer from './controllers/customer'
 var app = express();
 var port = process.env.PORT || 8000
 
+app.use(cors())
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: false
 }))
-
-app.use(cors())
 
 app.use('/product', Product)
 app.use('/thailand', Thailand)
