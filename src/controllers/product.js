@@ -7,7 +7,7 @@ router.route('/')
 
 function find_all(req, res, next){
   (async () => {
-    var sql = `SELECT * FROM inv.inventories ORDER BY code`;
+    var sql = `SELECT * FROM inv.inventories`;
     const { rows } = await pool.query(sql)
     if(rows.length == 0) return res.status(404).json({message: 'NOT FOUND!'})
     else return res.json(rows)
