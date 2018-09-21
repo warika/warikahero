@@ -5,6 +5,7 @@ import bodyParser from 'body-parser'
 import cors from 'cors'
 
 import Product from './controllers/product'
+import Thailand from './controllers/thailand'
 
 var app = express();
 var port = process.env.PORT || 8000
@@ -17,6 +18,7 @@ app.use(bodyParser.urlencoded({
 app.use(cors())
 
 app.use('/product', Product)
+app.use('/thailand', Thailand)
 
 app.listen(port, function() {
   console.log('Starting node.js on port ' + port)
