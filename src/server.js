@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({
 
 app.use('/product', Product)
 app.use('/thailand', Thailand)
-app.use('/customer', Customer)
+app.use('/customer', Customer);
 
 app.listen(port, function() {
   console.log('Starting node.js on port ' + port)
