@@ -15,8 +15,9 @@ async function update_by_id(req, res, next){
   try {
     let id = req.params.id
     let customer = req.body
-    var sql = `UPDATE "customers" SET (name, address, province, officeno, mobileno, contactperson, contactno, website, location, type, remark)
-               = ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) WHERE id = $12`;
+    console.log(customer);
+    var sql = `UPDATE "customers" SET (name, address, province, officeno, mobileno, contactperson, contactno, website, location, type, remark, district)
+               = ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) WHERE id = $13`;
      await pool.query(sql, [
      customer.name,
      customer.address,
@@ -29,6 +30,7 @@ async function update_by_id(req, res, next){
      customer.location,
      customer.type,
      customer.remark,
+     customer.district,
      id
    ])
    res.json({ message: 'แก้ไขสำเร็จ' })
@@ -71,9 +73,9 @@ async function add_data(req, res, next){
   try {
     var customer = req.body
     console.log(customer);
-    var sql = `INSERT INTO "customers" (name, address, province, officeno, mobileno, contactperson, contactno, website, location, type, remark)
-              VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`;
-    await pool.query(sql, [ customer.name, customer.address, customer.province, customer.officeno, customer.mobileno, customer.contactperson, customer.contactno, customer.website, customer.location, customer.type, customer.remark])
+    var sql = `INSERT INTO "customers" (name, address, province, officeno, mobileno, contactperson, contactno, website, location, type, remark, district)
+              VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`;
+    await pool.query(sql, [ customer.name, customer.address, customer.province, customer.officeno, customer.mobileno, customer.contactperson, customer.contactno, customer.website, customer.location, customer.type, customer.remark, customer.district])
     res.json({message: 'yes'})
   } catch (err) {
     setImmediate(() => { next(err) })
