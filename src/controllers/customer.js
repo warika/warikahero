@@ -50,7 +50,7 @@ async function delete_by_id(req, res, next){
 }
 async function find_all(req, res, next){
   try {
-    var sql = `SELECT * FROM "customers"`;
+    var sql = `SELECT * FROM "customers" ORDER BY id DESC`;
     const { rows } = await pool.query(sql)
     if(rows.length == 0) return res.status(404).json({message: 'NOT FOUND!'})
     else return res.json(rows)
